@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MindProfile",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "description": "Unique identifier for the profile" },
+    "version": { "type": "string" },
+    "ethical_axis": {
+      "type": "string",
+      "enum": ["good", "evil"],
+      "description": "Primary ethical orientation"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "semantic_layers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dimension": { "type": "string" },
+          "value": { "type": "number" }
+        },
+        "required": ["dimension", "value"]
+      }
+    },
+    "doubt_vector": {
+      "type": "array",
+      "items": { "type": "number" },
+      "description": "Doubt weightings across dimensions"
+    },
+    "adaptation_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "trigger": { "type": "string" },
+          "action": { "type": "string" }
+        },
+        "required": ["trigger", "action"]
+      }
+    }
+  },
+  "required": ["ethical_axis", "semantic_layers", "confidence"]
+}
